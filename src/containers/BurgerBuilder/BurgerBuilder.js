@@ -3,6 +3,8 @@ import Aux from '../../hoc/Aux';
 import Burger from '../../components/Burger/Burger';
 import BurgerControls from '../../components/BurgerControls/BurgerControls';
 
+const START_PRICE = 2.5;
+
 export const INGREDIENTS_LIST = [
   {
     ingredient: 'meat',
@@ -25,18 +27,35 @@ export const INGREDIENTS_LIST = [
     price: 0.5
   }
 ]
+
 class BurgerBuilder extends React.Component {
   state = {
     ingredients: [],
-    total: 2
+    total: START_PRICE
+  }
+
+  setTotal = (ingredients) => {
+    const total = ingredients.reduce((acc, curr) => {
+      let subTotal = 0;
+      INGREDIENTS_LIST.forEach((item) => {
+        if (item.ingredient === curr) {
+          subTotal = item.price + subTotal
+        }
+      })
+      return acc + subTotal;
+    }, 0)
+    this.setState({
+      total: START_PRICE + total,
+    });
   }
 
   addIngredientHandler = (ingredient) => {
     const ingredients = [...this.state.ingredients];
     ingredients.unshift(ingredient);
     this.setState({
-      ingredients: ingredients,
-    })
+      ingredients: ingredients
+    });
+    this.setTotal(ingredients);
   }
 
   removeIngredientHandler = (ingredient) => {
@@ -48,13 +67,14 @@ class BurgerBuilder extends React.Component {
         ingredients: ingredients
       })
     }
+    this.setTotal(ingredients);
   }
 
   render() {
     return (
       <Aux>
         <Burger ingredients={this.state.ingredients} />
-        <BurgerControls onClickPlus={this.addIngredientHandler} onClickMinus={this.removeIngredientHandler} />
+        <BurgerControls onClickPlus={this.addIngredientHandler} onClickMinus={this.removeIngredientHandler} total={this.state.total} ingredients={this.state.ingredients} />
       </Aux>
     )
   }
