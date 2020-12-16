@@ -31,10 +31,11 @@ export const INGREDIENTS_LIST = [
 class BurgerBuilder extends React.Component {
   state = {
     ingredients: [],
-    total: START_PRICE
+    totalPrice: START_PRICE,
+    purchasable: false
   }
 
-  setTotal = (ingredients) => {
+  updateTotalPrice = (ingredients) => {
     const total = ingredients.reduce((acc, curr) => {
       let subTotal = 0;
       INGREDIENTS_LIST.forEach((item) => {
@@ -45,7 +46,7 @@ class BurgerBuilder extends React.Component {
       return acc + subTotal;
     }, 0)
     this.setState({
-      total: START_PRICE + total,
+      totalPrice: START_PRICE + total,
     });
   }
 
@@ -55,7 +56,7 @@ class BurgerBuilder extends React.Component {
     this.setState({
       ingredients: ingredients
     });
-    this.setTotal(ingredients);
+    this.updateTotalPrice(ingredients);
   }
 
   removeIngredientHandler = (ingredient) => {
@@ -67,14 +68,14 @@ class BurgerBuilder extends React.Component {
         ingredients: ingredients
       })
     }
-    this.setTotal(ingredients);
+    this.updateTotalPrice(ingredients);
   }
 
   render() {
     return (
       <Aux>
         <Burger ingredients={this.state.ingredients} />
-        <BurgerControls onClickPlus={this.addIngredientHandler} onClickMinus={this.removeIngredientHandler} total={this.state.total} ingredients={this.state.ingredients} />
+        <BurgerControls onClickPlus={this.addIngredientHandler} onClickMinus={this.removeIngredientHandler} totalPrice={this.state.totalPrice} ingredients={this.state.ingredients} />
       </Aux>
     )
   }

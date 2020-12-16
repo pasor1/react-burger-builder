@@ -8,9 +8,7 @@ const Burger = (props) => {
     props.ingredients.map((ingredient, index) => {
       return <BurgerIngredient key={index} type={ingredient} />
     })
-  ) : (
-      <p>Please insert your ingredients</p>
-    )
+  ) : null; //change null if you want to show a message if the burger is empty
 
   return (
     <div className={styles.Burger}>
