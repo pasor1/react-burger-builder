@@ -16,7 +16,11 @@ const BurgerControls = (props) => {
         ))}
         <hr className="my-4" />
         <p className="text-md font-light">Total Price <span className="text-xl font-bold">{props.totalPrice.toFixed(2)}€</span></p>
-        <button className=" p-3 mt-5 text-white bg-gradient-to-t from-yellow-800 to-red-900 hover:from-yellow-700 hover:to-red-800 rounded-md border border-red-900 shadow-xl outline-none focus:outline-none hover:scale-105 transform transition duration-50 ease-in-out"> ORDER NOW</button>
+        {props.purchasable
+          ? <button className=" p-3 mt-5 text-white bg-gradient-to-t from-yellow-800 to-red-900 hover:from-yellow-700 hover:to-red-800 rounded-md border border-red-900 shadow-xl outline-none focus:outline-none hover:scale-105 transform transition duration-50 ease-in-out"> ORDER NOW</button>
+          : <button className=" p-3 mt-5 bg-gray-300 text-white font-semibold rounded-md shadow-md focus:outline-none cursor-default"> ORDER NOW</button>
+        }
+
       </div>
     </div>
   )

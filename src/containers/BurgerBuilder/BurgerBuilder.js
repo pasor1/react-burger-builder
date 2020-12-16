@@ -35,6 +35,13 @@ class BurgerBuilder extends React.Component {
     purchasable: false
   }
 
+  updatePurchaseState = (ingredients) => {
+    const isPurchasable = ingredients.length > 0;
+    this.setState({
+      purchasable: isPurchasable
+    });
+  }
+
   updateTotalPrice = (ingredients) => {
     const total = ingredients.reduce((acc, curr) => {
       let subTotal = 0;
@@ -46,8 +53,9 @@ class BurgerBuilder extends React.Component {
       return acc + subTotal;
     }, 0)
     this.setState({
-      totalPrice: START_PRICE + total,
+      totalPrice: START_PRICE + total
     });
+    this.updatePurchaseState(ingredients);
   }
 
   addIngredientHandler = (ingredient) => {
@@ -75,7 +83,12 @@ class BurgerBuilder extends React.Component {
     return (
       <Aux>
         <Burger ingredients={this.state.ingredients} />
-        <BurgerControls onClickPlus={this.addIngredientHandler} onClickMinus={this.removeIngredientHandler} totalPrice={this.state.totalPrice} ingredients={this.state.ingredients} />
+        <BurgerControls
+          onClickPlus={this.addIngredientHandler}
+          onClickMinus={this.removeIngredientHandler}
+          totalPrice={this.state.totalPrice}
+          ingredients={this.state.ingredients}
+          purchasable={this.state.purchasable} />
       </Aux>
     )
   }
