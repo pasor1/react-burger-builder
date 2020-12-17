@@ -1,6 +1,7 @@
 .Burger {
-  width: 90%;
   margin:auto auto;
+  padding:20px;
+  width: 360px;
   height: 400px;
   overflow: auto;
   text-align: center;
@@ -18,7 +19,7 @@
 
 @media (min-width: 1000px) and (min-height: 700px) {
   .Burger {
-    width: 700px;
+    width: 600px;
     height: 600px;
   }
 }

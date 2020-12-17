@@ -1,7 +1,9 @@
 import React from 'react';
-import Aux from '../../hoc/Aux';
 import Burger from '../../components/Burger/Burger';
 import BurgerControls from '../../components/BurgerControls/BurgerControls';
+import styles from './BurgerBuilder.module.css';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 
 const START_PRICE = 2.5;
 
@@ -81,7 +83,8 @@ class BurgerBuilder extends React.Component {
 
   render() {
     return (
-      <Aux>
+      <div className={styles.container}>
+        <Modal><OrderSummary /></Modal>
         <Burger ingredients={this.state.ingredients} />
         <BurgerControls
           onClickPlus={this.addIngredientHandler}
@@ -89,7 +92,7 @@ class BurgerBuilder extends React.Component {
           totalPrice={this.state.totalPrice}
           ingredients={this.state.ingredients}
           purchasable={this.state.purchasable} />
-      </Aux>
+      </div>
     )
   }
 }
