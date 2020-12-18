@@ -4,7 +4,7 @@ import styles from './Modal.module.css'
 const modal = (props) => {
   return (
     <>
-      <div className={styles.ModalBackground}>
+      <div className={styles.ModalBackdrop}>
       </div>
       <div className={styles.Modal}>
         {props.children}
