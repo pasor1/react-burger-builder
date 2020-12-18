@@ -34,7 +34,14 @@ class BurgerBuilder extends React.Component {
   state = {
     ingredients: [],
     totalPrice: START_PRICE,
-    purchasable: false
+    purchasable: false,
+    purchasing: false
+  }
+
+  orderNowHandler = () => {
+    this.setState({
+      purchasing: true
+    });
   }
 
   updatePurchaseState = (ingredients) => {
@@ -84,14 +91,15 @@ class BurgerBuilder extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Modal><OrderSummary /></Modal>
+        <Modal visible={this.state.purchasing}><OrderSummary ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} /></Modal>
         <Burger ingredients={this.state.ingredients} />
         <BurgerControls
           onClickPlus={this.addIngredientHandler}
           onClickMinus={this.removeIngredientHandler}
           totalPrice={this.state.totalPrice}
           ingredients={this.state.ingredients}
-          purchasable={this.state.purchasable} />
+          purchasable={this.state.purchasable}
+          onClickOrderNow={this.orderNowHandler} />
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import BurgerControl from './BurgerControl/BurgerControl'
 import { INGREDIENTS_LIST } from '../../containers/BurgerBuilder/BurgerBuilder'
+import TotalPrice from '../TotalPrice/TotalPrice'
 
 const BurgerControls = (props) => {
   return (
@@ -17,11 +18,12 @@ const BurgerControls = (props) => {
       <hr className="my-4" />
       <div className="text-center">
         <p className="text-xl font-light">
-          Total Price: <span className="text-2xl font-bold">{props.totalPrice.toFixed(2)}€</span>
+          <TotalPrice totalPrice={props.totalPrice} />
           <sup className="text-md ml-1 text-gray-500">*</sup>
         </p>
         {props.purchasable
-          ? <button className="p-3 my-5 text-white bg-gradient-to-t from-yellow-800 to-red-900 hover:from-yellow-700 hover:to-red-800 rounded-md border border-red-900 shadow-xl outline-none focus:outline-none hover:scale-105 transform transition duration-50 ease-in-out"> ORDER NOW</button>
+          ? <button onClick={props.onClickOrderNow}
+            className="p-3 my-5 text-white bg-gradient-to-t from-yellow-800 to-red-900 hover:from-yellow-700 hover:to-red-800 rounded-md border border-red-900 shadow-xl outline-none focus:outline-none hover:scale-105 transform transition duration-50 ease-in-out"> ORDER NOW</button>
           : <button className="p-3 my-5 bg-gray-300 text-white font-semibold rounded-md shadow-md focus:outline-none cursor-default"> ORDER NOW</button>
         }
         <p className="text-sm font-light ml-1 text-gray-500">* Total price includes bread</p>
