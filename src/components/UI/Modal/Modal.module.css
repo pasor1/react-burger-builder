@@ -1,6 +1,17 @@
+.ModalBackground {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 1000;
+    opacity: .5;
+}
+
 .Modal {
     position: fixed;
-    z-index: 500;
+    z-index: 1050;
     background-color: white;
     width: 70%;
     border: 1px solid #ccc;
