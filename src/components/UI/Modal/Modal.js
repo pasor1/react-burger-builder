@@ -4,7 +4,7 @@ import styles from './Modal.module.css'
 const modal = (props) => {
   return (
     <div>
-      <div className={styles.ModalBackdrop}
+      <div className={styles.ModalBackdrop} onClick={props.onClickBackdrop}
         style={{
           display: props.visible ? 'block' : 'none'
         }}></div>

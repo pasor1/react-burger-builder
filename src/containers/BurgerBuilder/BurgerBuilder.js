@@ -38,10 +38,11 @@ class BurgerBuilder extends React.Component {
     purchasing: false
   }
 
-  orderNowHandler = () => {
+  togglePurchasingHandler = () => {
+    const newPurchasingStatus = !this.state.purchasing;
     this.setState({
-      purchasing: true
-    });
+      purchasing: newPurchasingStatus
+    })
   }
 
   updatePurchaseState = (ingredients) => {
@@ -91,15 +92,17 @@ class BurgerBuilder extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Modal visible={this.state.purchasing}><OrderSummary ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} /></Modal>
+        <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
+          <OrderSummary ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BurgerControls
           onClickPlus={this.addIngredientHandler}
           onClickMinus={this.removeIngredientHandler}
+          onClickOrderNow={this.togglePurchasingHandler}
           totalPrice={this.state.totalPrice}
           ingredients={this.state.ingredients}
-          purchasable={this.state.purchasable}
-          onClickOrderNow={this.orderNowHandler} />
+          purchasable={this.state.purchasable} />
       </div>
     )
   }
