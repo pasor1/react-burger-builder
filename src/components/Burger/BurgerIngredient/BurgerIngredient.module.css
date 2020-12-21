@@ -17,18 +17,22 @@ img {
   width: 100%;
   overflow: visible;
   height: 55px;
+  transform: translateY(-10px);
 }
 
 .Cheese {
 width: 100%;
 overflow: visible;
-height: 0px;
+height: 10px;
+transform: translateY(25px);
 }
+
 
 .Salad {
   width: 100%;
   overflow: visible;
   height: 10px;
+  transform: translateY(15px);
 }
 
 .Tomato {

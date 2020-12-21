@@ -11,11 +11,12 @@ const modal = (props) => {
       <div className={styles.Modal}
         style={{
           transform: props.visible ? 'translateY(0)' : 'translateY(-100px)',
-          opacity: props.visible ? '1' : '0'
+          opacity: props.visible ? '1' : '0',
+          display: props.visible ? 'block' : 'none'
         }}>
         {props.children}
       </div>
-    </div>
+    </div >
   )
 
 }

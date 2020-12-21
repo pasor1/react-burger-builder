@@ -92,10 +92,6 @@ class BurgerBuilder extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
-          <OrderSummary onClickCancel={this.togglePurchasingHandler} ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
-        </Modal>
-        <Burger ingredients={this.state.ingredients} />
         <BurgerControls
           onClickPlus={this.addIngredientHandler}
           onClickMinus={this.removeIngredientHandler}
@@ -103,6 +99,10 @@ class BurgerBuilder extends React.Component {
           totalPrice={this.state.totalPrice}
           ingredients={this.state.ingredients}
           purchasable={this.state.purchasable} />
+        <Burger ingredients={this.state.ingredients} />
+        <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
+          <OrderSummary onClickCancel={this.togglePurchasingHandler} ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
+        </Modal>
       </div>
     )
   }
