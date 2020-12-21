@@ -19,8 +19,8 @@ export const INGREDIENTS_LIST = [
     price: 1
   },
   {
-    ingredient: 'bacon',
-    label: 'Bacon',
+    ingredient: 'tomato',
+    label: 'Tomato',
     price: 0.7
   },
   {
@@ -93,7 +93,7 @@ class BurgerBuilder extends React.Component {
     return (
       <div className={styles.container}>
         <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
-          <OrderSummary ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
+          <OrderSummary onClickCancel={this.togglePurchasingHandler} ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BurgerControls

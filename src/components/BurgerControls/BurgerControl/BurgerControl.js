@@ -1,15 +1,20 @@
 import React from 'react';
+import Button from '../../UI/Button/Button'
 
 const BurgerControl = (props) => {
   return (
-    <div className="mb-5 whitespace-nowrap">
-      <span className="text-xl mr-1">{props.label}</span> <span className="font-light text-sm mr-6">({props.price.toFixed(2) + '€'})</span>
-      {props.disabled
-        ? <button disabled type="button" onClick={props.onClickMinus} className="py-1 px-3 bg-gray-300 text-white font-semibold rounded-md shadow-md focus:outline-none cursor-default">-</button>
-        : <button type="button" onClick={props.onClickMinus} className="py-1 px-3 bg-red-600 text-white font-semibold rounded-md shadow-md focus:outline-none hover:bg-red-500 hover:scale-95 transform transition duration-50 ease-in-out">-</button>
-      }
-      <button type="button" onClick={props.onClickPlus} className="py-1 px-3 ml-2 bg-green-600 text-white font-semibold rounded-md shadow-md focus:outline-none hover:bg-green-500 hover:scale-95 transform transition duration-50 ease-in-out">+</button>
-    </div>
+    <tr>
+      <td>{props.label}</td>
+      <td className="font-light text-xs p-3">({props.price.toFixed(2) + '€'})</td>
+      <td>{props.quantity > 0 ? ` x${props.quantity}` : null}</td>
+      <td className="m-4">
+        {props.disabled
+          ? <Button disabled={true} btnStyle="disabled" style={{ padding: '1px 9px', margin: '4px' }}>-</Button>
+          : <Button onClick={props.onClickMinus} style={{ padding: '1px 9px', margin: '4px' }}>-</Button>
+        }
+        <Button onClick={props.onClickPlus} style={{ padding: '1px 7px', margin: '4px' }}>+</Button>
+      </td>
+    </tr>
   )
 }
 
