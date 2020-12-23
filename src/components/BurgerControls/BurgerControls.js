@@ -7,8 +7,8 @@ import TotalPrice from '../TotalPrice/TotalPrice'
 
 const BurgerControls = (props) => {
   return (
-    <div className="bg-gray-100 mx-auto p-6 pb-1 px-10 w-auto mt-4 text-right shadow-md border border-gray-300 rounded-xl">
-      <table><tbody>
+    <div className="bg-gradient-to-r from-yellow-300 via-yellow-300 to-yellow-400 text-grey-900 mx-auto p-6 pb-1 px-10 w-auto mt-4 text-right shadow-md border border-yellow-400 rounded-xl">
+      < table > <tbody>
         {INGREDIENTS_LIST.map((item) => (
           <BurgerControl
             key={item.ingredient}
@@ -19,12 +19,11 @@ const BurgerControls = (props) => {
             onClickPlus={() => props.onClickPlus(item.ingredient)}
             onClickMinus={() => props.onClickMinus(item.ingredient)} />
         ))}
-      </tbody></table>
+      </tbody></table >
       <hr className="my-4" />
       <div className="text-center">
         <p className="text-xl font-light">
           <TotalPrice totalPrice={props.totalPrice} />
-          <sup className="text-md ml-1 text-gray-500">*</sup>
         </p>
         {props.purchasable
           ? <Button
@@ -38,9 +37,8 @@ const BurgerControls = (props) => {
             Order Now
             </Button>
         }
-        <p className="text-sm font-light ml-1 text-gray-500">* Total price includes bread</p>
       </div>
-    </div>
+    </div >
   )
 }
 

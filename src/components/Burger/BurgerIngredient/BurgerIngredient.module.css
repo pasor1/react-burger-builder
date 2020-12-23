@@ -1,42 +1,62 @@
 img {
   width: 100%;
+  overflow: visible;  
 }
 
 .BreadBottom {
   width: 100%;
-  overflow: visible;
 }
 
 .BreadTop {
-  width: 100%;
-  height: 150px;
-  overflow: visible;
+  height: 91px;
 }
 
 .Meat {
-  width: 100%;
-  overflow: visible;
-  height: 55px;
-  transform: translateY(-10px);
+  height: 38px;
+  transform: translateY(-7px);
 }
 
 .Cheese {
-width: 100%;
-overflow: visible;
-height: 10px;
-transform: translateY(25px);
+  height: 7px;
+  transform: translateY(17px);
 }
 
 
 .Salad {
-  width: 100%;
-  overflow: visible;
-  height: 10px;
-  transform: translateY(15px);
+  height: 7px;
+  transform: translateY(10px);
 }
 
 .Tomato {
-  width: 100%;
-  overflow: visible;
-  height: 40px;
+  height: 28px;
+}
+
+@media (min-width: 950px) {
+  .BreadBottom {
+    width: 100%;
+  }
+
+  .BreadTop {
+    height: 130px;
+  }
+
+  .Meat {
+    height: 55px;
+    transform: translateY(-10px);
+  }
+
+  .Cheese {
+  height: 10px;
+  transform: translateY(25px);
+  }
+
+
+  .Salad {
+    height: 10px;
+    transform: translateY(15px);
+  }
+
+  .Tomato {
+    height: 40px;
+  }
 }

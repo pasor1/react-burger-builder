@@ -1,25 +1,16 @@
 .Burger {
   margin:auto;
   padding:20px;
-  min-width: 350px;
-  width: 350px;
+  min-width: 344px;
+  width: 344px;
   display: flex;
   flex-direction: column;
 }
 
-@media (min-width: 500px) and (min-height: 400px) {
+@media (min-width: 950px) {
   .Burger {
     min-width: 500px;
     width: 500px;
-
-  }
-}
-
-@media (min-width: 1000px) and (min-height: 700px) {
-  .Burger {
-    min-width: 500px;
-    width: 500px;
-
   }
 }
 

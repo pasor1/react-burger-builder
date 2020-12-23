@@ -4,15 +4,17 @@ import Button from '../../UI/Button/Button'
 const BurgerControl = (props) => {
   return (
     <tr>
-      <td>{props.label}</td>
-      <td className="font-light text-xs p-3">({props.price.toFixed(2) + '€'})</td>
-      <td>{props.quantity > 0 ? ` x${props.quantity}` : null}</td>
-      <td className="m-4">
+      <td className="text-xl font-bold leading-3">
+        {props.label}
+        <br /><span className="text-sm font-light">({props.price.toFixed(2) + '€'})</span>
+      </td>
+      <td className="text-xl font-light pl-1 w-9">{props.quantity > 0 ? ` x${props.quantity}` : null}</td>
+      <td className="text-xl font-bold pl-2">
         {props.disabled
-          ? <Button disabled={true} btnStyle="disabled" style={{ padding: '1px 9px', margin: '4px' }}>-</Button>
-          : <Button onClick={props.onClickMinus} style={{ padding: '1px 9px', margin: '4px' }}>-</Button>
+          ? <Button disabled={true} btnStyle="disabled" style={{ padding: '5px 16px', margin: '6px 0 6px 10px' }}>-</Button>
+          : <Button onClick={props.onClickMinus} style={{ padding: '5px 16px', margin: '6px 0 6px 10px' }}>-</Button>
         }
-        <Button onClick={props.onClickPlus} style={{ padding: '1px 7px', margin: '4px' }}>+</Button>
+        <Button onClick={props.onClickPlus} style={{ padding: '5px 14px', margin: '6px 0 6px 10px' }}>+</Button>
       </td>
     </tr>
   )
