@@ -45,6 +45,10 @@ class BurgerBuilder extends React.Component {
     })
   }
 
+  purchasingContinueHandler = () => {
+    alert('go to checkout')
+  }
+
   updatePurchaseState = (ingredients) => {
     const isPurchasable = ingredients.length > 0;
     this.setState({
@@ -89,6 +93,13 @@ class BurgerBuilder extends React.Component {
     this.updateTotalPrice(ingredients);
   }
 
+  resetIngredientsHandler = () => {
+    this.setState({
+      ingredients: []
+    })
+    this.updateTotalPrice([]);
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -96,12 +107,17 @@ class BurgerBuilder extends React.Component {
           onClickPlus={this.addIngredientHandler}
           onClickMinus={this.removeIngredientHandler}
           onClickOrderNow={this.togglePurchasingHandler}
+          onClickReset={this.resetIngredientsHandler}
           totalPrice={this.state.totalPrice}
           ingredients={this.state.ingredients}
           purchasable={this.state.purchasable} />
         <Burger ingredients={this.state.ingredients} />
         <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
-          <OrderSummary onClickCancel={this.togglePurchasingHandler} ingredients={this.state.ingredients} totalPrice={this.state.totalPrice} />
+          <OrderSummary
+            onClickCancel={this.togglePurchasingHandler}
+            onClickCheckout={this.purchasingContinueHandler}
+            ingredients={this.state.ingredients}
+            totalPrice={this.state.totalPrice} />
         </Modal>
       </div>
     )

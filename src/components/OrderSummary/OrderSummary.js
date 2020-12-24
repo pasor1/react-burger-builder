@@ -29,7 +29,7 @@ const orderSummary = (props) => {
       </div>
       <div className="text-center">
         <Button btnStyle="danger" onClick={props.onClickCancel}>Cancel</Button>
-        <Button btnStyle="success">Checkout</Button>
+        <Button btnStyle="success" onClick={props.onClickCheckout}>Checkout</Button>
       </div>
     </div>
   )

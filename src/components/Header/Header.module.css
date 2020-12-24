@@ -1,8 +1,49 @@
 .Header {
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 120;
   background-color: #df4f16;
   color: #ffffff;
-  margin-bottom: 0;
-  padding: 10px;
-  text-align: center;
   box-shadow: 0 0 5px #000000;
+}
+
+.logo {
+  margin-top: 20px;
+}
+
+.logo img{
+  width: 100px;
+}
+
+.navItems {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navItems li {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.navItems li a {
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+  box-sizing: border-box;
+  display: block;
 }

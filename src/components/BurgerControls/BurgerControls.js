@@ -26,16 +26,30 @@ const BurgerControls = (props) => {
           <TotalPrice totalPrice={props.totalPrice} />
         </p>
         {props.purchasable
-          ? <Button
-            onClick={props.onClickOrderNow}
-            btnStyle="success">
-            Order Now
+          ? <>
+            <Button
+              onClick={props.onClickReset}
+              btnStyle="danger">
+              Reset
             </Button>
-          : <Button
-            btnStyle="disabled"
-            disabled={true}>
-            Order Now
+            <Button
+              onClick={props.onClickOrderNow}
+              btnStyle="success">
+              Order Now
             </Button>
+          </>
+          : <>
+            <Button
+              btnStyle="disabled"
+              disabled={true}>
+              Reset
+            </Button>
+            <Button
+              btnStyle="disabled"
+              disabled={true}>
+              Order Now
+            </Button>
+          </>
         }
       </div>
     </div >

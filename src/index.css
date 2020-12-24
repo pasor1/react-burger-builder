@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background-color: #fff;
-}
+html {background-color: #fff;}
 
 body {
+  min-width: 340px;
   background-image: linear-gradient(0deg ,#fff, rgb(32, 17, 0))
 }
