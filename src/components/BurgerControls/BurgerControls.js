@@ -8,18 +8,20 @@ import TotalPrice from '../TotalPrice/TotalPrice'
 const BurgerControls = (props) => {
   return (
     <div className="bg-gradient-to-r from-yellow-300 via-yellow-300 to-yellow-400 text-grey-900 mx-auto p-6 pb-1 px-10 w-auto mt-4 text-right shadow-md border border-yellow-400 rounded-xl">
-      < table > <tbody>
-        {INGREDIENTS_LIST.map((item) => (
-          <BurgerControl
-            key={item.ingredient}
-            quantity={props.ingredients.filter(x => x === item.ingredient).length}
-            label={item.label}
-            price={item.price}
-            disabled={!props.ingredients.includes(item.ingredient)}
-            onClickPlus={() => props.onClickPlus(item.ingredient)}
-            onClickMinus={() => props.onClickMinus(item.ingredient)} />
-        ))}
-      </tbody></table >
+      <table>
+        <tbody>
+          {INGREDIENTS_LIST.map((item) => (
+            <BurgerControl
+              key={item.ingredient}
+              quantity={props.ingredients.filter(x => x === item.ingredient).length}
+              label={item.label}
+              price={item.price}
+              disabled={!props.ingredients.includes(item.ingredient)}
+              onClickPlus={() => props.onClickPlus(item.ingredient)}
+              onClickMinus={() => props.onClickMinus(item.ingredient)} />
+          ))}
+        </tbody>
+      </table>
       <hr className="my-4" />
       <div className="text-center">
         <p className="text-xl font-light">

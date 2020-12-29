@@ -15,35 +15,18 @@
   box-shadow: 0 0 5px #000000;
 }
 
-.logo {
-  margin-top: 20px;
+.HamburgerMenu{
+  width: 40px;
 }
 
-.logo img{
-  width: 100px;
+@media (max-width: 499px) {
+  .DesktopOnly {
+    display: none;
+  }
 }
 
-.navItems {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.navItems li {
-  margin: 0;
-  box-sizing: border-box;
-  display: flex;
-  height: 100%;
-  align-items: center;
-}
-
-.navItems li a {
-  height: 100%;
-  padding: 16px 10px;
-  border-bottom: 4px solid transparent;
-  box-sizing: border-box;
-  display: block;
+@media (min-width: 500px) {
+  .MobileOnly {
+    display: none;
+  }
 }

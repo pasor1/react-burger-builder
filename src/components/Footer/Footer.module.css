@@ -1,5 +1,10 @@
 .Footer {
   position: fixed;
+  width: 100%;
   bottom: 0;
   left: 0;
+  z-index: 100;
+  background-color: #fff;
+  padding: 5px;
+  display: none;
 }
