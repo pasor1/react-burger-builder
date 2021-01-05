@@ -4,6 +4,7 @@ import BurgerControls from '../../components/BurgerControls/BurgerControls';
 import styles from './BurgerBuilder.module.css';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import axios from '../../axios-orders';
 
 const START_PRICE = 2.5;
 
@@ -46,7 +47,25 @@ class BurgerBuilder extends React.Component {
   }
 
   purchasingContinueHandler = () => {
-    alert('go to checkout')
+    const order = {
+      ingredients: this.state.ingredients,
+      price: this.state.totalPrice,
+      customer: {
+        name: 'Paso',
+        email: 'pasor1@gmail.com',
+        address: {
+          city: 'Venegono Inferiore',
+          street: 'Via Pianbosco',
+          country: 'Italy'
+        }
+      }
+    }
+    axios.post('/orders.json', order)
+      .then(response => {
+        this.resetIngredientsHandler();
+        this.togglePurchasingHandler();
+      })
+      .catch(error => console.log(error))
   }
 
   updatePurchaseState = (ingredients) => {
