@@ -4,6 +4,8 @@ import BurgerControls from '../../components/BurgerControls/BurgerControls';
 import styles from './BurgerBuilder.module.css';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import OrderSubmitted from '../../components/OrderSubmitted/OrderSubmitted';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 
 const START_PRICE = 2.5;
@@ -36,7 +38,9 @@ class BurgerBuilder extends React.Component {
     ingredients: [],
     totalPrice: START_PRICE,
     purchasable: false,
-    purchasing: false
+    purchasing: false,
+    loading: false,
+    purchased: false
   }
 
   togglePurchasingHandler = () => {
@@ -46,7 +50,15 @@ class BurgerBuilder extends React.Component {
     })
   }
 
+  togglePurchasedHandler = () => {
+    this.setState((prevState, props) => ({
+      purchasing: !prevState.purchasing,
+      purchased: !prevState.purchased
+    }));
+  }
+
   purchasingContinueHandler = () => {
+    this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
@@ -62,10 +74,13 @@ class BurgerBuilder extends React.Component {
     }
     axios.post('/orders.json', order)
       .then(response => {
-        this.resetIngredientsHandler();
-        this.togglePurchasingHandler();
+        this.setState({ loading: false })
+        this.togglePurchasedHandler();
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        this.setState({ loading: false })
+        console.log(error)
+      })
   }
 
   updatePurchaseState = (ingredients) => {
@@ -114,12 +129,24 @@ class BurgerBuilder extends React.Component {
 
   resetIngredientsHandler = () => {
     this.setState({
-      ingredients: []
+      ingredients: [],
+      purchasable: false,
+      purchasing: false,
+      purchased: false
     })
     this.updateTotalPrice([]);
   }
 
   render() {
+    let orderSummary = <OrderSummary
+      onClickCancel={this.togglePurchasingHandler}
+      onClickCheckout={this.purchasingContinueHandler}
+      ingredients={this.state.ingredients}
+      totalPrice={this.state.totalPrice} />
+    if (this.state.loading) {
+      orderSummary = <Spinner />
+    }
+
     return (
       <div className={styles.container}>
         <BurgerControls
@@ -132,11 +159,10 @@ class BurgerBuilder extends React.Component {
           purchasable={this.state.purchasable} />
         <Burger ingredients={this.state.ingredients} />
         <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
-          <OrderSummary
-            onClickCancel={this.togglePurchasingHandler}
-            onClickCheckout={this.purchasingContinueHandler}
-            ingredients={this.state.ingredients}
-            totalPrice={this.state.totalPrice} />
+          {orderSummary}
+        </Modal>
+        <Modal visible={this.state.purchased} onClickBackdrop={this.resetIngredientsHandler}>
+          <OrderSubmitted onClickClose={this.resetIngredientsHandler} />
         </Modal>
       </div>
     )

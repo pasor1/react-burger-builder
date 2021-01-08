@@ -1,8 +1,8 @@
-import React from 'react'
-import BurgerControl from './BurgerControl/BurgerControl'
-import { INGREDIENTS_LIST } from '../../containers/BurgerBuilder/BurgerBuilder'
-import Button from '../UI/Button/Button'
-import TotalPrice from '../TotalPrice/TotalPrice'
+import React from 'react';
+import BurgerControl from './BurgerControl/BurgerControl';
+import { INGREDIENTS_LIST } from '../../containers/BurgerBuilder/BurgerBuilder';
+import Button from '../UI/Button/Button';
+import TotalPrice from '../TotalPrice/TotalPrice';
 
 
 const BurgerControls = (props) => {
