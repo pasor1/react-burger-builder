@@ -75,7 +75,6 @@ class BurgerBuilder extends React.Component {
     }
     axios.post('/orders.json', order)
       .then(response => {
-        console.log(response);
         this.setState({
           loading: false,
           purchasing: false,
@@ -83,7 +82,6 @@ class BurgerBuilder extends React.Component {
         })
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           loading: false,
           purchasing: false,
