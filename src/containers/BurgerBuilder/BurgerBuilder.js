@@ -7,6 +7,7 @@ import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import OrderSubmitted from '../../components/OrderSubmitted/OrderSubmitted';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
+import withErrorHandler from '../../components/hoc/withErrorHandler/withErrorHandler';
 
 const START_PRICE = 2.5;
 
@@ -74,12 +75,20 @@ class BurgerBuilder extends React.Component {
     }
     axios.post('/orders.json', order)
       .then(response => {
-        this.setState({ loading: false })
-        this.togglePurchasedHandler();
+        console.log(response);
+        this.setState({
+          loading: false,
+          purchasing: false,
+          purchased: true
+        })
       })
       .catch(error => {
-        this.setState({ loading: false })
-        console.log(error)
+        console.log(error);
+        this.setState({
+          loading: false,
+          purchasing: false,
+          purchased: false
+        })
       })
   }
 
@@ -169,4 +178,4 @@ class BurgerBuilder extends React.Component {
   }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);
