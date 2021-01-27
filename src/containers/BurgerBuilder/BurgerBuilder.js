@@ -4,7 +4,6 @@ import BurgerControls from '../../components/BurgerControls/BurgerControls';
 import styles from './BurgerBuilder.module.css';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
-import OrderSubmitted from '../../components/OrderSubmitted/OrderSubmitted';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../components/hoc/withErrorHandler/withErrorHandler';
@@ -40,8 +39,7 @@ class BurgerBuilder extends React.Component {
     totalPrice: START_PRICE,
     purchasable: false,
     purchasing: false,
-    loading: false,
-    purchased: false
+    loading: false
   }
 
   togglePurchasingHandler = () => {
@@ -51,15 +49,8 @@ class BurgerBuilder extends React.Component {
     })
   }
 
-  togglePurchasedHandler = () => {
-    this.setState((prevState, props) => ({
-      purchasing: !prevState.purchasing,
-      purchased: !prevState.purchased
-    }));
-  }
-
   purchasingContinueHandler = () => {
-    this.setState({ loading: true });
+    /* this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
@@ -87,7 +78,11 @@ class BurgerBuilder extends React.Component {
           purchasing: false,
           purchased: false
         })
-      })
+      }) */
+    this.props.history.push({
+      pathname: "/checkout",
+      search: `ingredients=${this.state.ingredients.join(',')}`
+    });
   }
 
   updatePurchaseState = (ingredients) => {
@@ -138,8 +133,7 @@ class BurgerBuilder extends React.Component {
     this.setState({
       ingredients: [],
       purchasable: false,
-      purchasing: false,
-      purchased: false
+      purchasing: false
     })
     this.updateTotalPrice([]);
   }
@@ -147,7 +141,7 @@ class BurgerBuilder extends React.Component {
   render() {
     let orderSummary = <OrderSummary
       onClickCancel={this.togglePurchasingHandler}
-      onClickCheckout={this.purchasingContinueHandler}
+      onClickConfirm={this.purchasingContinueHandler}
       ingredients={this.state.ingredients}
       totalPrice={this.state.totalPrice} />
     if (this.state.loading) {
@@ -167,9 +161,6 @@ class BurgerBuilder extends React.Component {
         <Burger ingredients={this.state.ingredients} />
         <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
           {orderSummary}
-        </Modal>
-        <Modal visible={this.state.purchased} onClickBackdrop={this.resetIngredientsHandler}>
-          <OrderSubmitted onClickClose={this.resetIngredientsHandler} />
         </Modal>
       </div>
     )

@@ -6,12 +6,14 @@ import hamburgerMenu from '../../assets/images/hamburgerMenu.png';
 
 const header = (props) => (
   <header className={styles.Header}>
-    <div onClick={props.openSideDrawler} className={styles.MobileOnly}>
-      <img src={hamburgerMenu} alt="Open Menu" className={styles.HamburgerMenu} />
-    </div>
-    <Logo />
-    <div className={styles.DesktopOnly}>
-      <Navigation />
+    <div className={styles.HeaderContainer}>
+      <div onClick={props.openSideDrawler} className={styles.MobileOnly}>
+        <img src={hamburgerMenu} alt="Open Menu" className={styles.HamburgerMenu} />
+      </div>
+      <Logo />
+      <div className={styles.DesktopOnly}>
+        <Navigation />
+      </div>
     </div>
   </header>
 )

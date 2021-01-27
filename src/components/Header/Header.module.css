@@ -4,15 +4,22 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 120;
   background-color: #df4f16;
   color: #ffffff;
   box-shadow: 0 0 5px #000000;
+}
+
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  margin:auto;
 }
 
 .HamburgerMenu{

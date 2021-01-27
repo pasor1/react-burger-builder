@@ -30,8 +30,8 @@ const orderSummary = (props) => {
         </table>
       </div>
       <div className="text-center">
-        <Button btnStyle="danger" onClick={props.onClickCancel}>Cancel</Button>
-        <Button btnStyle="success" onClick={props.onClickCheckout}>Checkout</Button>
+        <Button btnStyle="danger" onClick={props.onClickCancel}>Close</Button>
+        <Button btnStyle="success" onClick={props.onClickConfirm}>Checkout</Button>
       </div>
     </div>
   )
