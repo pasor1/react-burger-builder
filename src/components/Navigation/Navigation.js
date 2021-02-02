@@ -5,8 +5,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 const navigation = (props) => (
   <nav>
     <ul className={styles.navItems}>
-      <NavigationItem href="/" active>Builder</NavigationItem>
-      <NavigationItem href="/checkout">Checkout</NavigationItem>
+      <NavigationItem href="/" exact active>Builder</NavigationItem>
       <NavigationItem href="/orders">Orders</NavigationItem>
     </ul>
   </nav>

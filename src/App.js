@@ -10,9 +10,9 @@ class App extends React.Component {
     return (
       <Layout>
         <Switch>
-          <Route path="/" exact component={BurgerBuilder} />
           <Route path="/checkout" component={CheckOut} />
           <Route path="/orders" component={Orders} />
+          <Route path="/" exact component={BurgerBuilder} />
         </Switch>
       </Layout>
     )

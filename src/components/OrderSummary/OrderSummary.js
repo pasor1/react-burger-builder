@@ -6,7 +6,7 @@ import Button from '../UI/Button/Button'
 const orderSummary = (props) => {
   return (
     <div className="text-center">
-      <h3 className="text-4xl font-extrabold mb-5">Your order</h3>
+      <h3 className="text-4xl font-extrabold mb-5">Your Burger</h3>
       <div className="m-auto inline-block text-right">
         <table>
           <tbody>

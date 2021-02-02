@@ -1,0 +1,11 @@
+.OrderItem {
+  border-bottom: 1px solid #bbb;
+}
+
+.OrderItem, hr {
+  padding: 20px;
+}
+
+.OrderItem:last-child{
+  border-bottom: none;
+}

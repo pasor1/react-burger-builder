@@ -22,6 +22,7 @@ class ContactData extends React.Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
+      timestamp: Date.now(),
       customer: {
         name: 'Paso',
         email: 'pasor1@gmail.com',
@@ -37,7 +38,7 @@ class ContactData extends React.Component {
         this.setState({
           loading: false
         });
-        this.props.history.push('/');
+        this.props.history.push('/orders');
       })
       .catch(error => {
         this.setState({

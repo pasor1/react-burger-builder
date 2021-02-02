@@ -1,0 +1,16 @@
+.OrdersContainer {
+  min-width: 344px;
+  width: 344px;
+  margin:20px auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px hsla(0, 0%, 0%, 0.6);
+} 
+
+@media (min-width: 950px) {
+  .OrdersContainer {
+    min-width: 500px;
+    width: 500px;
+  }
+}
