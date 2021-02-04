@@ -1,19 +1,16 @@
 .formContainer {
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
+  min-width: 344px;
+  width: 344px;
+  margin:20px auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px hsla(0, 0%, 0%, 0.6);
 }
 
-.formContainer input {
-  border: 2px solid rgb(255, 255, 255);
-  display: block;
-  margin: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.5);
-  outline: none;
-}
-
-.formContainer input:focus {
-  border: 2px solid rgb(223, 145, 0);
+@media (min-width: 950px) {
+  .formContainer {
+    min-width: 500px;
+    width: 500px;
+  }
 }

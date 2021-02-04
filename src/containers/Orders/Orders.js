@@ -39,7 +39,7 @@ class Orders extends React.Component {
               <Order key={order.id} order={order} />
             ))
             )
-            : <h3 class="text-2xl text-red-600 text-center my-20">You don't have any orders yet</h3>
+            : <h3 className="text-2xl text-red-600 text-center my-20">You don't have any orders yet</h3>
         }
       </ul>
     )
