@@ -36,16 +36,14 @@ class ContactData extends React.Component {
         }
       },
       country: {
-        inputtype: 'input',
-        type: 'text',
+        inputtype: 'selectCountry',
         label: 'Country',
         value: '',
         valid: false,
         touched: false,
-        errorMessage: 'Please enter your Country',
+        errorMessage: 'Please select your Country',
         validation: {
           required: true,
-          minLength: 2,
         }
       },
       city: {

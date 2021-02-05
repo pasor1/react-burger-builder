@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Input.module.css';
+import countries from './countries.json';
 
 const Input = (props) => {
   let inputElement = null;
@@ -22,6 +23,14 @@ const Input = (props) => {
       inputElement = (
         <select className={styles.input} {...props}>
           {props.options.map(option => <option key={option[0]} value={option[0]}>{option[1]}</option>)}
+        </select>
+      )
+      break;
+    case 'selectCountry':
+      inputElement = (
+        <select className={styles.input} {...props}>
+          <option></option>
+          {countries.map(country => <option key={country.value} value={country.label}>{country.label}</option>)}
         </select>
       )
       break;
