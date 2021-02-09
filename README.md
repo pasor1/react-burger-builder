@@ -1,6 +1,6 @@
 # Demo
 
-This project is still under development, but you can try a partially [woking demo](https://paso-burger-builder.netlify.app)
+This project is still under development, but you can try a partially **[Woking Demo](https://paso-burger-builder.netlify.app)**.
 
 # Getting Started with Create React App
 
