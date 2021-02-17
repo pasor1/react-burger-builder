@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Orders.module.css';
-import Axios from '../../axios-orders';
+import Axios from '../../config/axios-orders';
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/UI/Spinner/Spinner';
 

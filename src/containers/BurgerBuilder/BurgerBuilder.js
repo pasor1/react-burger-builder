@@ -1,42 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import Burger from '../../components/Burger/Burger';
 import BurgerControls from '../../components/BurgerControls/BurgerControls';
 import styles from './BurgerBuilder.module.css';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import axios from '../../axios-orders';
+import axios from '../../config/axios-orders';
 import withErrorHandler from '../../components/hoc/withErrorHandler/withErrorHandler';
-
-const START_PRICE = 2.5;
-
-export const INGREDIENTS_LIST = [
-  {
-    ingredient: 'meat',
-    label: 'Meat',
-    price: 2
-  },
-  {
-    ingredient: 'cheese',
-    label: 'Cheese',
-    price: 1
-  },
-  {
-    ingredient: 'tomato',
-    label: 'Tomato',
-    price: 0.7
-  },
-  {
-    ingredient: 'salad',
-    label: 'Salad',
-    price: 0.5
-  }
-]
+import * as actionTypes from '../../store/actions';
 
 class BurgerBuilder extends React.Component {
   state = {
-    ingredients: [],
-    totalPrice: START_PRICE,
     purchasable: false,
     purchasing: false,
     loading: false
@@ -49,72 +25,12 @@ class BurgerBuilder extends React.Component {
     })
   }
 
-  purchasingContinueHandler = () => {
-    this.props.history.push({
-      pathname: "/checkout",
-      search: `ingredients=${this.state.ingredients.join(',')}&price=${this.state.totalPrice}`
-    });
-  }
-
-  updatePurchaseState = (ingredients) => {
-    const isPurchasable = ingredients.length > 0;
-    this.setState({
-      purchasable: isPurchasable
-    });
-  }
-
-  updateTotalPrice = (ingredients) => {
-    const total = ingredients.reduce((acc, curr) => {
-      let subTotal = 0;
-      INGREDIENTS_LIST.forEach((item) => {
-        if (item.ingredient === curr) {
-          subTotal = item.price + subTotal
-        }
-      })
-      return acc + subTotal;
-    }, 0)
-    this.setState({
-      totalPrice: START_PRICE + total
-    });
-    this.updatePurchaseState(ingredients);
-  }
-
-  addIngredientHandler = (ingredient) => {
-    const ingredients = [...this.state.ingredients];
-    ingredients.unshift(ingredient);
-    this.setState({
-      ingredients: ingredients
-    });
-    this.updateTotalPrice(ingredients);
-  }
-
-  removeIngredientHandler = (ingredient) => {
-    const ingredients = [...this.state.ingredients];
-    const ingredientIndex = ingredients.indexOf(ingredient);
-    if (ingredientIndex > -1) {
-      ingredients.splice(ingredientIndex, 1);
-      this.setState({
-        ingredients: ingredients
-      })
-    }
-    this.updateTotalPrice(ingredients);
-  }
-
-  resetIngredientsHandler = () => {
-    this.setState({
-      ingredients: [],
-      purchasable: false,
-      purchasing: false
-    })
-    this.updateTotalPrice([]);
-  }
-
   render() {
     let orderSummary = <OrderSummary
       onClickCancel={this.togglePurchasingHandler}
-      onClickConfirm={this.purchasingContinueHandler}
-      ingredients={this.state.ingredients}
-      totalPrice={this.state.totalPrice} />
+      onClickConfirm={() => this.props.history.push('/checkout')}
+      ingredients={this.props.ingredientsRdx}
+      totalPrice={this.props.totalPriceRdx} />
     if (this.state.loading) {
       orderSummary = <Spinner />
     }
@@ -122,14 +38,14 @@ class BurgerBuilder extends React.Component {
     return (
       <div className={styles.container}>
         <BurgerControls
-          onClickPlus={this.addIngredientHandler}
-          onClickMinus={this.removeIngredientHandler}
+          onClickPlus={this.props.onIngredientAdd}
+          onClickMinus={this.props.onIngredientRemove}
+          onClickReset={this.props.onIngredientsReset}
+          totalPrice={this.props.totalPriceRdx}
+          ingredients={this.props.ingredientsRdx}
           onClickOrderNow={this.togglePurchasingHandler}
-          onClickReset={this.resetIngredientsHandler}
-          totalPrice={this.state.totalPrice}
-          ingredients={this.state.ingredients}
-          purchasable={this.state.purchasable} />
-        <Burger ingredients={this.state.ingredients} />
+          purchasable={this.props.ingredientsRdx.length > 0} />
+        <Burger ingredients={this.props.ingredientsRdx} />
         <Modal visible={this.state.purchasing} onClickBackdrop={this.togglePurchasingHandler}>
           {orderSummary}
         </Modal>
@@ -138,4 +54,19 @@ class BurgerBuilder extends React.Component {
   }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+const mapStateToProps = state => {
+  return {
+    ingredientsRdx: state.ingredients,
+    totalPriceRdx: state.totalPrice
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onIngredientAdd: (ingredientName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingredientName }),
+    onIngredientRemove: (ingredientName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingredientName }),
+    onIngredientsReset: () => dispatch({ type: actionTypes.RESET_INGREDIENTS })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));

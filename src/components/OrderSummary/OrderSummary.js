@@ -1,5 +1,5 @@
 import React from 'react';
-import { INGREDIENTS_LIST } from '../../containers/BurgerBuilder/BurgerBuilder';
+import { INGREDIENTS_LIST } from '../../config/constants';
 import TotalPrice from '../TotalPrice/TotalPrice';
 import Button from '../UI/Button/Button'
 

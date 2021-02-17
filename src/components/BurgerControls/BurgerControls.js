@@ -1,6 +1,6 @@
 import React from 'react';
 import BurgerControl from './BurgerControl/BurgerControl';
-import { INGREDIENTS_LIST } from '../../containers/BurgerBuilder/BurgerBuilder';
+import { INGREDIENTS_LIST } from '../../config/constants';
 import Button from '../UI/Button/Button';
 import TotalPrice from '../TotalPrice/TotalPrice';
 
@@ -22,8 +22,7 @@ const BurgerControls = (props) => {
           ))}
         </tbody>
       </table>
-      <hr className="my-4" />
-      <div className="text-center">
+      <div className="text-center mt-3">
         <p className="text-xl font-light">
           <TotalPrice totalPrice={props.totalPrice} />
         </p>

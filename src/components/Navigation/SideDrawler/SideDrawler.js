@@ -13,7 +13,7 @@ const sideDrawler = (props) => {
         <div className={styles.CloseIcon}>
           <img src={closeHamburgerMenu} alt="Close Menu" onClick={props.hidden} />
         </div>
-        <Navigation />
+        <Navigation onclick={props.hidden} />
       </div>
     </>
   )
