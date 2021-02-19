@@ -1,10 +1,5 @@
-import * as actionTypes from './actions';
-import { INGREDIENTS_LIST, START_PRICE } from '../config/constants';
-
-const initialState = {
-  ingredients: [],
-  totalPrice: START_PRICE,
-};
+import * as actionTypes from '../actions/actionTypes';
+import { INGREDIENTS_LIST, BREAD_PRICE, INITIAL_INGREDIENTS } from '../../config/constants';
 
 const updateTotalPrice = (ingredients) => {
   const total = ingredients.reduce((acc, curr) => {
@@ -16,8 +11,13 @@ const updateTotalPrice = (ingredients) => {
     })
     return acc + subTotal;
   }, 0);
-  return START_PRICE + total
+  return BREAD_PRICE + total
 }
+
+const initialState = {
+  ingredients: INITIAL_INGREDIENTS,
+  totalPrice: updateTotalPrice(INITIAL_INGREDIENTS),
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -48,9 +48,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         ...initialState
       }
-
-
-
 
     default:
       return state;

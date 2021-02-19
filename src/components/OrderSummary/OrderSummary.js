@@ -10,7 +10,7 @@ const orderSummary = (props) => {
       <div className="m-auto inline-block text-right">
         <table>
           <tbody>
-            {INGREDIENTS_LIST.map((item) => {
+            {props.ingredients ? INGREDIENTS_LIST.map((item) => {
               const ingredientQuantity = props.ingredients.filter(x => x === item.ingredient).length;
               return ingredientQuantity > 0
                 ? <tr key={item.ingredient}>
@@ -19,7 +19,8 @@ const orderSummary = (props) => {
                   <td className="p-2 font-semibold text-lg">{(item.price * ingredientQuantity).toFixed(2)}€</td>
                 </tr>
                 : null
-            })}
+            })
+              : null}
             <tr>
               <td colSpan="3" className="p-3 font-light text-xl">
                 <hr className="mb-2" />

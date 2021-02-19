@@ -21,4 +21,6 @@ export const INGREDIENTS_LIST = [
   }
 ]
 
-export const START_PRICE = 2.5;
+export const BREAD_PRICE = 2.5;
+
+export const INITIAL_INGREDIENTS = ["meat"];
